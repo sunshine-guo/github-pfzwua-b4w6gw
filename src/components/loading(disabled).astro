@@ -1,0 +1,53 @@
+---
+  import '../styles/loading.css'
+---
+<!doctype html>
+<html lang="en">
+	<head>
+
+<script>
+  document.onreadystatechange = closeLoading //当页面加载状态改变时执行 closeLoading 函数
+  function closeLoading() {
+    if(document.readyState == "complete") 
+      setTimeout(() => {
+        document.getElementById('loading-page').style.visibility="hidden";
+      }, 1000); //每次加载完成后延时 1s 隐藏 loading page
+    else {document.getElementById('loading-page').style.visibility="visible";}
+  }
+</script>
+
+</head>
+
+<body>
+	<!--Loading-->
+	<div id='loading-page'>
+  <!doctype html>
+<html lang="en">
+
+  <header>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+
+    <!-- Custom CSS -->
+		<link rel="stylesheet" href="../styles/loading.css">
+
+<title> | DUT - iGEM 2024</title>
+
+</header>
+<body>
+<div class="loading-bg">&nbsp;</div>
+<div class="loading">
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+</div>
+<div class="loading-text">
+  	<span style="color: #c696ff;font-size: 30px;">LOADING  <span style="font-size: 40px"><span class="dot-1" style="color: #c696ff">.</span><span class="dot-2" style="color: #fb96ff">.</span><span class="dot-3" style="color:#ffa3d7">.</span></span></span>
+</div>
+</body>
+  </div>

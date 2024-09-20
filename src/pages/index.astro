@@ -1,0 +1,116 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import '../styles/loading.css';
+import '../styles/home.css';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+		<link rel="stylesheet" href="../styles/home.css">
+<script>
+  document.onreadystatechange = closeLoading //当页面加载状态改变时执行 closeLoading 函数
+  function closeLoading() {
+    if(document.readyState == "complete") 
+      setTimeout(() => {
+        document.getElementById('loading-page').style.visibility="hidden";
+      }, 1000); //每次加载完成后延时 1s 隐藏 loading page
+    else {document.getElementById('loading-page').style.visibility="visible";}
+  }
+</script>
+
+<script>
+    // Scroll Bar
+    const nav = document.getElementById('scrollbar');
+    var tot_h = document.body.clientHeight - window.innerHeight;
+    var tot_w = window.innerWidth;
+
+    function countScrollRatio(scrollTop) {
+      var ratio = (scrollTop / tot_h).toFixed(2);
+      var w = ratio * tot_w;
+      nav.style.width = w + 'px';
+    }
+</script>
+<title>Home | DUT - iGEM 2024</title>
+</head>
+
+<body>
+	<!-- Scrollbar -->
+	<div id="scrollbar"></div>
+	<!--Loading-->
+	<div id='loading-page'>
+  <!doctype html>
+<html lang="en">
+
+  <header>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="referrer" content="no-referrer">
+    <!-- Bootstrap CSS -->
+
+    <!-- Custom CSS -->
+		<link rel="stylesheet" href="../styles/loading.css">
+
+<title> | DUT - iGEM 2024</title>
+
+</header>
+<body>
+<div class="loading-bg">&nbsp;</div>
+<div class="loading">
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+</div>
+<div class="loading-text">
+  	<span style="color: #c696ff;font-size: 30px;">LOADING  <span style="font-size: 40px"><span class="dot-1" style="color: #c696ff">.</span><span class="dot-2" style="color: #fb96ff">.</span><span class="dot-3" style="color:#ffa3d7">.</span></span></span>
+</div>
+</body>
+  </div>
+
+</head>
+	</body>
+	<body>
+		<Header />
+		<main>
+			<div class="image">
+				<img src="//images.weserv.nl/?url=https://static.igem.wiki/teams/5475/video-cover.png" alt="1" >
+			</div>
+			<h1>Welcome To Dalian University Of Technology</h1>
+			<section class="style1">
+				<div class="content1">
+					<h2>Please give me some content</h2>
+					<p>Please give me some content</p>
+					<ul class="actions">
+						<li><img src="//images.weserv.nl/?url=https://so1.360tres.com/t017bd898178a60de2b.png" alt="1"></li>
+						<li><img src="//images.weserv.nl/?url=https://so1.360tres.com/t017bd898178a60de2b.png" alt="1"></li>
+						<li><img src="//images.weserv.nl/?url=https://so1.360tres.com/t017bd898178a60de2b.png" alt="1"></li>
+					</ul>
+				</div>
+			</section>
+			<section class="style2">
+				<div class="content2">
+					<h2>Please give me some content</h2>
+					<p>Please give me some content</p>
+					<ul class="actions">
+						<li><img src="//images.weserv.nl/?url=https://so1.360tres.com/t017bd898178a60de2b.png" alt="1"></li>
+						<li><img src="//images.weserv.nl/?url=https://so1.360tres.com/t017bd898178a60de2b.png" alt="1"></li>
+						<li><img src="//images.weserv.nl/?url=https://so1.360tres.com/t017bd898178a60de2b.png" alt="1"></li>
+					</ul>
+				</div>
+			</section>
+			
+			<div class="video">
+				<video width="100%" playsinline="playsinline" controls poster="//images.weserv.nl/?url=https://static.igem.wiki/teams/5475/video-cover.png" src="https://video.igem.org/download/streaming-playlists/hls/videos/ee51095e-d5de-4a59-928c-dea623ad6d46-1080-fragmented.mp4">
+				</video>
+			</div>
+		</main>
+		<Footer />
+	</body>
+</html>

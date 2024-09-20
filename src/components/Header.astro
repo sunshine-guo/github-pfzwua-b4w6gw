@@ -1,0 +1,194 @@
+---
+import HeaderLink from './HeaderLink.astro';
+import { SITE_TITLE } from '../consts';
+---
+<head>
+<script>
+	// Scroll Bar
+    const nav = document.getElementById('scrollbar');
+    function countScrollRatio(scrollTop) {
+			var tot_h = document.body.clientHeight - window.innerHeight;
+    	var tot_w = window.innerWidth;
+      var ratio = (scrollTop / tot_h).toFixed(2);
+      var w = ratio * tot_w;
+      nav.style.width = w + 'px';
+    }
+
+	// // Menu
+  //   function bind(tagStr, eventStr, func) {
+  //     let el = document.querySelectorAll(tagStr);
+  //     el.forEach((item) => item.addEventListener(eventStr, func))
+  //   }
+  //   window.onload = function () {
+  //     countScrollRatio(document.documentElement.scrollTop);
+  //     document.getElementById("s0").classList.add("fin");
+  //   }
+  //   window.onresize = function () {
+  //     tot_h = document.body.clientHeight - window.innerHeight;
+  //     tot_w = window.innerWidth;
+  //     countScrollRatio(document.documentElement.scrollTop);
+  //   }
+
+	// 监听滚动事件
+    document.onscroll = function () {
+      countScrollRatio(document.documentElement.scrollTop);
+    }
+</script>
+
+<!-- 导航栏下拉菜单 -->
+<script>
+  // 获取元素
+     var nav = document.querySelector('.menu');
+     var lis = nav.children;
+     console.log(nav);
+     // 循环注册事件
+     for (var i = 0; i < lis.length; i++) {
+         lis[i].onmouseover = function() {
+             this.children[1].style.display = 'grid'; //里面的ul是他的第二个孩子
+         }
+         lis[i].onmouseleave = function() {
+             this.children[1].style.display = 'none'; //里面的ul是他的第二个孩子
+         }
+     }
+</script>
+</head>
+
+<body>
+	<nav>
+		<a href="/"><img class="logo" src="//images.weserv.nl/?url=https://static.igem.wiki/teams/5475/logo.png" alt="logo"></a>
+		<ul class="menu">
+			<li class="drop-menu"><HeaderLink href="/">Home</HeaderLink></li>
+			<li class="drop-menu"><HeaderLink>Project⮟<img class="arrow" src"https://static.igem.wiki/teams/5475/arrow.svg"></HeaderLink>
+				<ul class="drop-box">
+					<li class="drop-li"><HeaderLink href="/blog">1</HeaderLink></li>
+					<li class="drop-li"><HeaderLink href="/blog">2</HeaderLink></li>
+				</ul>
+			</li>
+			<li class="drop-menu"><HeaderLink>Wetlab⮟</HeaderLink>
+				<ul class="drop-box">
+					<li class="drop-li"><HeaderLink href="/wetlab">1</HeaderLink></li>
+					<li class="drop-li"><HeaderLink href="/blog">2</HeaderLink></li>
+				</ul>
+			</li>
+			<li class="drop-menu"><HeaderLink href="/model">Model</HeaderLink></li>
+			<li class="drop-menu"><HeaderLink>Human Practices⮟</HeaderLink>
+				<ul class="drop-box">
+					<li class="drop-li"><HeaderLink href="/HP/hp">Overview</HeaderLink></li>
+					<li class="drop-li"><HeaderLink href="/HP/hp">Integrated Human Practices</HeaderLink></li>
+					<li class="drop-li"><HeaderLink href="/HP/hp">Education&amp;Communication</HeaderLink></li>
+					<li class="drop-li"><HeaderLink href="/HP/hp">Collaboration&amp;Partnership</HeaderLink></li>
+					<li class="drop-li"><HeaderLink href="/HP/hp">Entrepreneurship</HeaderLink></li>
+				</ul>
+			</li>
+			<li class="drop-menu"><HeaderLink href="/awards">Awards</HeaderLink></li>
+			<li class="drop-menu"><HeaderLink>Team⮟</HeaderLink>
+				<ul class="drop-box">
+					<li class="drop-li"><HeaderLink href="/team">1</HeaderLink></li>
+					<li class="drop-li"><HeaderLink href="/blog">2</HeaderLink></li>
+				</ul>
+			</li>
+		</ul>
+	</nav>
+	<!-- ScrollBar -->
+  <div id="scrollbar"></div>
+</body>
+
+
+<style>
+	header {
+		margin: 0;
+		padding: 0 1em;
+		background: white;
+		box-shadow: 0 2px 8px rgba(var(--black), 5%);
+	}
+	.logo {
+		left:50%;
+		position:relative;
+		margin: 0;
+		width:80px;
+	}
+	.menu {
+		right:100px;
+		text-align:right;
+	}
+	.arrow{
+		width:20px;
+		height:20px;
+	}
+	h2 a,
+	h2 a.active {
+		text-decoration: none;
+	}
+	nav {
+		user-select: none;
+		position: fixed;
+		z-index:100;
+		width:100%;
+		height:100px;
+		top:0;
+		left:0;
+		background-image: linear-gradient(var(--bg) 0, var(--bg) 70%, transparent 100%);
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		
+	}
+	nav a {
+		padding: 1em 0.5em;
+		color: var(--black);
+		text-decoration: none;
+	}
+	nav a.active {
+		text-decoration: none;
+		border-bottom-color: var(--accent);
+	}
+	.drop-box{
+            position:absolute;
+						transform:translate(-15%,0);
+            top:70px;
+            background-color:rgb(229, 142, 158); 
+            min-width:100px;
+						display:none;
+						line-height:30px;
+						border-radius:10px;
+        }
+	.drop-li>a{
+						padding:8px 20px;  
+            color:#ffffff;
+						text-align:center;  
+            display:block; 
+            text-decoration:none;  
+            font-size:12px;
+						
+				}
+	ul,
+li {
+		float:left;
+		list-style: none;
+		margin:0;
+		padding:0px 10px;
+}
+
+	.social-links,
+	.social-links a {
+		display: flex;
+	}
+	@media (max-width: 720px) {
+		.social-links {
+			display: none;
+		}
+	}
+
+	#scrollbar {
+    z-index: 999;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 5px;
+    width: 0;
+    background-color: green;
+    transition: .2s;
+
+		
+</style>
+

@@ -1,0 +1,32 @@
+.image {
+  text-align: center;
+}
+.content1 {
+  background-color: rgb(229, 142, 158);
+  position: relative;
+  height: 600px;
+  top: 50px;
+}
+.content2 {
+  background-color: rgb(200,231,127);
+  position: relative;
+  height: 500px;
+  top: 50px;
+}
+h2 {
+  font-family: Garamond, serif;
+  font-weight: normal;
+  position: relative;
+  left: 10%;
+}
+p {
+  font-family: Garamond, serif;
+  font-weight: normal;
+  position: relative;
+  height: 80px;
+  top: 8px;
+  left: 10%;
+}
+ul li {
+  display: inline-block;
+}

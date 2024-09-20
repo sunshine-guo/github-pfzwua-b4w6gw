@@ -1,0 +1,164 @@
+---
+import Layout from '../../layouts/BlogPost.astro';
+import '../../styles/loading.css';
+import '../../styles/sub-page.css';
+import '../../../echarts.js';
+import '../../styles/global.css'
+---
+
+<script>
+  document.onreadystatechange = closeLoading //当页面加载状态改变时执行 closeLoading 函数
+  function closeLoading() {
+    if(document.readyState == "complete") 
+      setTimeout(() => {
+        document.getElementById('loading-page').style.visibility="hidden";
+      }, 1000); //每次加载完成后延时 1s 隐藏 loading page
+    else {document.getElementById('loading-page').style.visibility="visible";}
+  }
+</script>
+<title>Home | DUT - iGEM 2024</title>
+
+<body>
+	<!--Loading-->
+	<div id='loading-page'>
+  <!doctype html>
+<html lang="en">
+
+  <header>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title> | DUT - iGEM 2024</title>
+
+</header>
+<body>
+<div class="loading-bg">&nbsp;</div>
+<div class="loading">
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+</div>
+<div class="loading-text">
+  	<span style="color: #c696ff;font-size: 30px;">LOADING  <span style="font-size: 40px"><span class="dot-1" style="color: #c696ff">.</span><span class="dot-2" style="color: #fb96ff">.</span><span class="dot-3" style="color:#ffa3d7">.</span></span></span>
+</div>
+</body>
+  </div>
+
+
+
+<!-- 这个是模板的head部分 -->
+<Layout
+	title="HP-1"
+	pubDate={new Date('September 02 2024')}
+	heroImage="/blog-placeholder-about.jpg"
+>
+<!-- 侧面导航栏 -->
+  <div class="side-menu" slot="side-menu">
+		<div class="side-title"><li><a href="#first">first title</a></li></div>
+		<div class="side-title">
+    <li><a href="#second">second title</a></li>
+    <li class="small">small title1</li>
+    <li class="small">small title2</li>
+    </div>
+		<div class="side-title"><li>third title</li></div>
+		<div class="side-title"><li>last title</li></div>
+	</div>
+
+
+<!-- 正文部分 -->
+<div>
+  <h3>hello,first title</h3>
+  <div id="first" style="position:relative; top:-150px;"></div>
+</div>
+<p>hello,please give me some content</p>
+<p>hello,please give me some content</p>
+<p>hello,please give me some content</p>
+<p>hello,please give me some content</p>
+<p>hello,please give me some content</p>
+<p>hello,please give me some content</p>
+<p>hello,please give me some content</p>
+<p>hello,please give me some content</p>
+<p>hello,please give me some content</p>
+<p>hello,please give me some content</p>
+<p>hello,please give me some content</p>
+
+<div>
+  <h3>hello,second title</h3>
+  <div id="second" style="position:relative; top:-150px;"></div>
+</div>
+<p>hello,please give me some content</p>
+<p>hello,please give me some content</p>
+<p>hello,please give me some content</p>
+<p>hello,please give me some content</p>
+<p>hello,please give me some content</p>
+<p>hello,please give me some content</p>
+<p>hello,please give me some content</p>
+<p>hello,please give me some content</p>
+<p>hello,please give me some content</p>
+<p>hello,please give me some content</p>
+<p>hello,please give me some content</p>
+<div id="graph1" style="height: 500px"></div>
+
+  
+  <script type="text/javascript" src="../../../echarts.js"></script>
+
+  <script type="text/javascript">
+    var dom = document.getElementById('graph1');
+    var myChart = echarts.init(dom, null, {
+      renderer: 'canvas',
+      useDirtyRect: false
+    });
+    var app = {};
+    
+    var option;
+
+    option = {
+  tooltip: {
+    trigger: 'item'
+  },
+  legend: {
+    top: '5%',
+    left: 'center'
+  },
+  series: [
+    {
+      name: 'Access From',
+      type: 'pie',
+      radius: ['40%', '70%'],
+      avoidLabelOverlap: false,
+      label: {
+        show: false,
+        position: 'center'
+      },
+      emphasis: {
+        label: {
+          show: true,
+          fontSize: 40,
+          fontWeight: 'bold'
+        }
+      },
+      labelLine: {
+        show: false
+      },
+      data: [
+        { value: 1048, name: 'Search Engine' },
+        { value: 735, name: 'Direct' },
+        { value: 580, name: 'Email' },
+        { value: 484, name: 'Union Ads' },
+        { value: 300, name: 'Video Ads' }
+      ]
+    }
+  ]
+};
+
+    if (option && typeof option === 'object') {
+      myChart.setOption(option);
+    }
+
+    window.addEventListener('resize', myChart.resize);
+  </script>
+
+</Layout>

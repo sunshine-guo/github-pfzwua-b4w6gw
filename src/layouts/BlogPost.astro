@@ -1,0 +1,155 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import FormattedDate from '../components/FormattedDate.astro';
+
+type Props = CollectionEntry<'blog'>['data'];
+
+const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
+---
+
+<html lang="en">
+	<head>
+		<BaseHead title={title} description={description} />
+		<style>
+			main {
+				width: 100%;
+				max-width: 100%;
+				margin: 0;
+				padding-bottom: 0;
+			}
+			article{
+				width:100%;
+			}
+			.hero-image {
+				width: 100%;
+			}
+			.hero-image img {
+				display: block;
+				margin: 0 auto;
+				border-radius: 12px;
+				box-shadow: var(--box-shadow);
+			}
+			.prose {
+				width: 90%;
+				max-width: calc(100% - 2em);
+				padding: 1em;
+				color: rgb(var(--gray-dark));
+			}
+			.title {
+				margin: 2em;
+				text-align: center;
+				line-height: 1;
+			}
+			.title h1 {
+				margin: 0 0 0.5em 0;
+			}
+			.date {
+				margin-bottom: 0.5em;
+				color: rgb(var(--gray));
+			}
+			.last-updated-on {
+				font-style: italic;
+			}
+			#main-div{
+				display:flex;
+			}
+			.content{
+				position:relative;
+				padding:20px;
+				padding-bottom:50px;
+				width:75%;
+				background-color:#ddf1ff;
+				border-radius: 30px;
+			}
+			#gotop {
+    		position: fixed;
+    		bottom: 50px;
+    		right: 20px;
+    		width: 160px;
+				#top1{display:block;}
+				#top2{display:none;}
+				&:hover{
+					#top1{display:none;}
+					#top2{display:block;}
+				}
+			}
+			#top2{
+				position:absolute;
+				display:block;
+				bottom:0px;
+				right:0px;
+				width: 160px;
+			}
+		</style>
+	</head>
+
+	<script>
+    var gotop = document.querySelector("#gotop");    
+    gotop.style.display = "none";// 一开始div隐藏  
+    window.addEventListener("scroll", scrollHandler);// 然后给window加事件监听，滚动条大于某个值时，div出现
+    function scrollHandler(e) {        
+        var distanceY = document.documentElement.scrollTop || document.body.scrollTop;//兼容写法，获取当前页面y轴的滚动距离
+        if (distanceY > 50) {
+            gotop.style.display = "block";
+        } else {
+            gotop.style.display = "none";
+        }
+    }
+    // 然后给div添加点击事件，用计时器interval来循环，步长为5，scrollTop依次减5，时间每50ms循环一次，直到scrollTop为0清除计时器
+    gotop.addEventListener("click", clickHandler);
+    function clickHandler(e) {
+			var dY = document.documentElement.scrollTop || document.body.scrollTop;//兼容
+        let timer = setInterval(function () {
+            var distanceY = document.documentElement.scrollTop || document.body.scrollTop;//兼容
+            if (distanceY == 0){
+                clearInterval(timer);
+                return;
+            } 
+            var speed = Math.ceil(dY/20);//设置返回速度
+            document.documentElement.scrollTop=distanceY-speed;
+        }, 16);
+    }
+
+</script>
+
+	<body>
+		<Header />
+		<main>
+			<article>
+				<div class="hero-image">
+					{heroImage && <img width={1020} height={510} src={heroImage} alt="" />}
+				</div>
+				<div class="prose">
+					<div class="title">
+						<div class="date">
+							<FormattedDate date={pubDate} />
+							{
+								updatedDate && (
+									<div class="last-updated-on">
+										Last updated on <FormattedDate date={updatedDate} />
+									</div>
+								)
+							}
+						</div>
+						<h1>{title}</h1>
+						<hr />
+					</div>
+					<div id="main-div">
+						<slot name="side-menu"/>
+						<div class="content">
+							<slot />
+						</div>
+					</div>
+				</div>
+				<div id="gotop">
+      		<img id="top1" src="//images.weserv.nl/?url=https://static.igem.wiki/teams/5475/top-1.png" alt="top-1">
+					<img id="top2" src="//images.weserv.nl/?url=https://static.igem.wiki/teams/5475/top-2.png" alt="top-2">
+    		</div>
+			</article>
+		</main>
+		<Footer />
+	</body>
+</html>
